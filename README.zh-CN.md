@@ -15,6 +15,14 @@
 >
 > **AI 辅助说明。** 本项目的代码开发获得了 **OpenAI 的 ChatGPT** 的协助。项目作者仍对代码的审查、测试、维护和发布负责。
 
+## 截图
+
+<p align="center">
+  <a href="assets/interface.png">
+    <img src="assets/interface.png" alt="EbookLosslessDownloader 界面截图" width="380">
+  </a>
+</p>
+
 ## 这里的“无损”是什么意思
 
 这里的“无损”是指：相对于平台向阅读器提供的页面数据，尽量**避免额外的、不必要的画质劣化**。它并不表示每一页源文件本身都是原始无损母版。
