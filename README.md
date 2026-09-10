@@ -46,7 +46,7 @@ For PNG, lossless WEBP, and lossless JXL output, the encoded result preserves th
 - [x] Image codecs and JPG coefficient processing in Web Workers.
 - [x] Small OCR worker pool so recognition can overlap with page processing.
 - [x] Material Design 3 interface.
-- [x] Interface languages: **简体中文 / English / 日本語**, with the selected language remembered locally.
+- [x] Interface languages: **中文 / English / 日本語**, with the selected language remembered locally.
 - [x] Hidden developer mode for diagnostics and preservation/timing metadata.
 
 ## Installation and usage
