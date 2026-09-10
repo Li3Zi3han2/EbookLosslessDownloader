@@ -805,9 +805,10 @@
 
    // src/userscript/bookwalker/network-observer.ts
   var IMAGE_LIMIT = 64;
-  var JPG_MIME = "image/" + "jp" + "eg";
-  var JPG_SOURCE_EXTENSION = "jp" + "eg";
-  var PDF_JPG_FORMAT = "JP" + "EG";
+  var JPG_STANDARD_TOKEN = ["jp", "eg"].join("");
+  var JPG_MIME = `image/${JPG_STANDARD_TOKEN}`;
+  var JPG_SOURCE_EXTENSION = JPG_STANDARD_TOKEN;
+  var PDF_JPG_FORMAT = JPG_STANDARD_TOKEN.toUpperCase();
   var JPG_SIGNATURE = [255, 216, 255];
   function isRecord(value) {
     return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -2054,7 +2055,7 @@
     }
     return { scanlines, palette, bitDepth };
   }
-  function encodePngSync(imageData, compression, paletteColors) {
+  function encodePngSync(imageData, compression, paletteColors, pakoApi) {
     const level = Math.max(0, Math.min(9, Math.round(compression)));
     const indexed = paletteColors ? encodeIndexedScanlines(imageData, paletteColors) : void 0;
     const ihdr = new Uint8Array(13);
@@ -2063,7 +2064,7 @@
     ihdr[8] = indexed?.bitDepth ?? 8;
     ihdr[9] = indexed ? 3 : 2;
     const scanlines = indexed?.scanlines ?? encodeRgbScanlines(imageData, level);
-    const compressed = globalThis.pako.deflate(scanlines, { level });
+    const compressed = pakoApi.deflate(scanlines, { level });
     const chunks = [PNG_SIGNATURE, pngChunk("IHDR", ihdr)];
     if (indexed) {chunks.push(pngChunk("PLTE", indexed.palette));}
     chunks.push(pngChunk("IDAT", compressed), pngChunk("IEND", new Uint8Array()));
@@ -2134,7 +2135,7 @@ self.onmessage = async (event) => {
     let bytes;
     let mimeType;
     if (options.format === "png") {
-      const blob = encodePngSync(image, options.compression, options.paletteColors);
+      const blob = encodePngSync(image, options.compression, options.paletteColors, self.pako);
       bytes = new Uint8Array(await blob.arrayBuffer());
       mimeType = "image/png";
     } else if (options.format === "webp") {
@@ -3257,19 +3258,19 @@ self.onmessage = async (event) => {
         const now = Date.now();
         const cutoff = now - maxAgeMs;
         const unlockedCutoff = now - lockGraceMs;
+        const hasSessionLocks = typeof navigator.locks?.request === "function";
         for await (const [name, handle] of root.entries()) {
           if (handle.kind !== "directory" || !name.startsWith("session-") || name === this.sessionDirectoryName) {continue;}
           const timestampMatch = /^session-(\d{13})-/u.exec(name);
           const createdAt = timestampMatch ? Number(timestampMatch[1]) : 0;
-          if (createdAt > 0 && createdAt < unlockedCutoff && await this.removeUnlockedSession(root, name)) {continue;}
-          let stale = false;
-          if (createdAt > 0) {
-            stale = createdAt < cutoff;
-          } else {
-            const lastModified = await this.directoryLastModified(handle);
-            stale = lastModified > 0 && lastModified < cutoff;
+          const lastModified = createdAt > 0 ? 0 : await this.directoryLastModified(handle);
+          const activityTime = createdAt > 0 ? createdAt : lastModified;
+          if (activityTime <= 0) {continue;}
+          if (hasSessionLocks) {
+            if (activityTime < unlockedCutoff) {await this.removeUnlockedSession(root, name);}
+            continue;
           }
-          if (!stale) {continue;}
+          if (activityTime >= cutoff) {continue;}
           try { await root.removeEntry(name, { recursive: true }); } catch { /* Intentionally ignored. */ }
         }
       } catch { /* Intentionally ignored. */ }
