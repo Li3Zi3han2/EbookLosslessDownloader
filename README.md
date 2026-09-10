@@ -52,7 +52,7 @@ For PNG, lossless WEBP, and lossless JXL output, the encoded result preserves th
 ## Installation and usage
 
 1. Install a userscript manager such as Tampermonkey or Violentmonkey.
-2. Install `EbookLosslessDownloader.user.js` from this repository. After the file is published on the `main` branch, the Raw userscript URL is:
+2. Install `EbookLosslessDownloader.user.js` from the Raw userscript URL below. Installing from this URL allows the userscript manager to record the installation source and use the update URL configured in the script:
 
    ```text
    https://raw.githubusercontent.com/Li3Zi3han2/EbookLosslessDownloader/main/EbookLosslessDownloader.user.js
