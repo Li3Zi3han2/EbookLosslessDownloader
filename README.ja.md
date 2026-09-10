@@ -149,3 +149,24 @@ https://github.com/Li3Zi3han2/EbookLosslessDownloader/issues
 EbookLosslessDownloader は **GNU General Public License v3.0 or later（GPL-3.0-or-later）** で公開します。詳細は `LICENSE` を参照してください。
 
 変更版を配布する場合は、適用される GPL の条件に従って対応するソースコードも引き続き提供する必要があります。第三者コンポーネントにはそれぞれのライセンスおよび表示が適用されます。`THIRD_PARTY_NOTICES.md` を参照してください。
+
+## Star 推移
+
+このプロジェクトが役立った場合は、ぜひ ⭐ を付けてください。
+
+<a href="https://www.star-history.com/?repos=Li3Zi3han2%2FEbookLosslessDownloader&type=date">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://api.star-history.com/chart?repos=Li3Zi3han2/EbookLosslessDownloader&type=date&theme=dark"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://api.star-history.com/chart?repos=Li3Zi3han2/EbookLosslessDownloader&type=date"
+    />
+    <img
+      alt="Star History Chart"
+      src="https://api.star-history.com/chart?repos=Li3Zi3han2/EbookLosslessDownloader&type=date"
+    />
+  </picture>
+</a>
