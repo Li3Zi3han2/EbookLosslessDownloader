@@ -15,6 +15,14 @@
 >
 > **AI assistance notice.** The code in this project has been developed with assistance from **OpenAI's ChatGPT**. The project author remains responsible for reviewing, testing, maintaining, and releasing it.
 
+## Screenshot
+
+<p align="center">
+  <a href="assets/interface.png">
+    <img src="assets/interface.png" alt="EbookLosslessDownloader interface" width="380">
+  </a>
+</p>
+
 ## What “lossless” means here
 
 “Lossless” refers to avoiding unnecessary additional degradation relative to the page data supplied by the platform. It does **not** mean that every source page is an originally lossless master image.
