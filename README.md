@@ -148,4 +148,24 @@ Do not post account credentials, cookies, signed private URLs, or other sensitiv
 
 EbookLosslessDownloader is released under the **GNU General Public License v3.0 or later (GPL-3.0-or-later)**. See `LICENSE`.
 
+## Star History
+
+If you find this project useful, consider giving it a ⭐.
+
+<a href="https://www.star-history.com/?repos=Li3Zi3han2%2FEbookLosslessDownloader&type=date">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://api.star-history.com/chart?repos=Li3Zi3han2/EbookLosslessDownloader&type=date&theme=dark"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://api.star-history.com/chart?repos=Li3Zi3han2/EbookLosslessDownloader&type=date"
+    />
+    <img
+      alt="Star History Chart"
+      src="https://api.star-history.com/chart?repos=Li3Zi3han2/EbookLosslessDownloader&type=date"
+    />
+  </picture>
+</a>
 Modified versions that are distributed must remain available under the applicable GPL terms. Third-party components retain their own licenses and notices; see `THIRD_PARTY_NOTICES.md`.
